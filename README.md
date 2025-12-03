@@ -1,0 +1,296 @@
+# 📖 **TiketKeretaMaksi - Aplikasi Pemesanan Tiket Kereta API**
+
+## 🚂 **Deskripsi Proyek**
+TiketKeretaMaksi adalah aplikasi web untuk pemesanan tiket kereta api online dengan sistem penyimpanan data menggunakan **JavaScript Array & localStorage**. Aplikasi ini dikembangkan sebagai proyek tugas dengan fokus pada implementasi **CRUD operations** dan **data management** menggunakan struktur data array.
+
+## ✨ **Fitur Utama**
+
+### 🎟️ **Pemesanan Tiket Kereta**
+- Pencarian rute berdasarkan stasiun asal & tujuan
+- Filter berdasarkan kelas kereta (Ekonomi, Bisnis, Eksekutif, Premium)
+- Pilihan jumlah penumpang (dewasa & anak)
+- Sistem pemesanan dengan konfirmasi real-time
+
+### 📊 **Manajemen Data**
+- **CRUD Operations** lengkap (Create, Read, Update, Delete)
+- Penyimpanan data di **localStorage browser**
+- Filter data berdasarkan status (Semua, Akan Datang, Selesai, Dibatalkan)
+- Pencarian data dengan autocomplete
+- Statistik otomatis dari data riwayat
+
+### 👤 **Manajemen Profil**
+- Edit informasi profil pengguna
+- Sistem membership dengan poin
+- Keanggotaan tier (Gold, Platinum)
+- Penyimpanan preferensi pengguna
+
+### 📈 **Riwayat Pemesanan**
+- Tampilan riwayat dalam format card
+- Filter berdasarkan tipe dan status
+- Statistik real-time
+- Export data ke format JSON
+
+## 🛠️ **Teknologi yang Digunakan**
+
+### **Frontend**
+- **HTML5** - Struktur halaman web
+- **CSS3** - Styling dengan animasi modern
+- **JavaScript (ES6+)** - Logika aplikasi dan manipulasi DOM
+- **Font Awesome 6** - Icon library
+- **Google Fonts (Poppins)** - Tipografi
+
+### **Data Storage**
+- **localStorage API** - Penyimpanan data persist di browser
+- **JavaScript Array Methods** - Manipulasi data (map, filter, reduce, forEach)
+- **JSON** - Format data serialization
+
+## 📁 **Struktur File Proyek**
+
+```
+tiketkeretamaksi/
+│
+├── index.html              # Landing page
+├── landing.html           # Halaman utama
+├── login.html            # Halaman login
+├── profile.html          # Halaman profil
+├── train-search.html     # Pencarian tiket kereta
+├── history.html         # Riwayat pemesanan
+│
+├── styles.css           # Style utama
+├── login.css           # Style khusus login
+├── script.js           # JavaScript utama
+│
+└── README.md           # Dokumentasi proyek
+```
+
+## 🗃️ **Struktur Data**
+
+### **Data History (Array of Objects)**
+```javascript
+{
+    id: 123456789,          // Unique ID (timestamp)
+    type: 'train',          // Tipe pemesanan
+    status: 'upcoming',     // Status: 'upcoming', 'completed', 'cancelled'
+    trainName: 'Argo Bromo Anggrek',
+    from: 'Gambir (GMR)',
+    to: 'Surabaya Gubeng (SGU)',
+    departure: '08:00',
+    arrival: '15:30',
+    date: '2023-11-20',
+    orderNumber: 'TK-20231120-001',
+    price: 450000,
+    passengers: 2,
+    class: 'Eksekutif',
+    createdAt: '2023-11-15T10:30:00Z'
+}
+```
+
+### **Data Profil (Object)**
+```javascript
+{
+    firstName: 'Andi',
+    lastName: 'Wijaya',
+    email: 'andi.wijaya@email.com',
+    phone: '+62 812-3456-7890',
+    birthdate: '1990-05-15',
+    address: 'Jl. Sudirman No. 123, Jakarta Pusat',
+    membership: {
+        level: 'Gold',
+        points: 1250,
+        status: 'AKTIF',
+        benefits: ['15% Cashback', 'Priority Support']
+    }
+}
+```
+
+## 🔧 **API Data Storage**
+
+### **Kelas DataStorage**
+```javascript
+// Inisialisasi
+DataStorage.getHistory()        // Ambil semua data history
+DataStorage.getProfile()        // Ambil data profil
+DataStorage.getStatistics()     // Ambil statistik
+
+// CRUD Operations
+DataStorage.addHistoryItem(item)     // Tambah data baru
+DataStorage.updateHistoryStatus(id, status)  // Update status
+DataStorage.deleteHistoryItem(id)    // Hapus data
+DataStorage.filterHistory(type)      // Filter data
+
+// Utility
+DataStorage.addSampleData()     // Tambah data contoh
+DataStorage.clearAllData()      // Reset semua data
+DataStorage.exportData()        // Export data ke JSON
+```
+
+### **Contoh Penggunaan**
+```javascript
+// Tambah data pemesanan baru
+const newBooking = {
+    type: 'train',
+    status: 'upcoming',
+    trainName: 'Argo Bromo',
+    from: 'Gambir',
+    to: 'Surabaya',
+    price: 450000
+};
+DataStorage.addHistoryItem(newBooking);
+
+// Filter data berdasarkan status
+const upcomingBookings = DataStorage.filterHistory('upcoming');
+
+// Ambil statistik
+const stats = DataStorage.getStatistics();
+console.log(`Total tiket: ${stats.trainCount}`);
+console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
+```
+
+## 🎨 **Fitur UI/UX**
+
+### **Design System**
+- **Warna Primer**: `#3498db` (Biru), `#2c3e50` (Dark Blue)
+- **Warna Sekunder**: `#2ecc71` (Hijau), `#e74c3c` (Merah)
+- **Font**: Poppins (300-700 weight)
+- **Border Radius**: 8px, 15px
+- **Shadow**: 0 5px 15px rgba(0,0,0,0.05)
+
+### **Komponen UI**
+- **Cards** untuk riwayat dan hasil pencarian
+- **Forms** dengan validation real-time
+- **Buttons** dengan hover effects
+- **Tabs** untuk navigasi
+- **Modals** untuk detail informasi
+
+## 📱 **Responsive Design**
+- **Desktop** (>1024px) - Grid layout dengan sidebar
+- **Tablet** (768px-1024px) - Adaptive layout
+- **Mobile** (<768px) - Stacked layout dengan menu hamburger
+
+## 🚀 **Cara Menjalankan**
+
+### **Langkah 1: Clone/Download Proyek**
+```bash
+git clone [repository-url]
+cd tiketkeretamaksi
+```
+
+### **Langkah 2: Buka di Browser**
+1. Buka file `landing.html` di browser web
+2. Atau gunakan live server extension di VS Code
+
+### **Langkah 3: Demo Data**
+1. Buka halaman History
+2. Buka Developer Console (F12)
+3. Ketik `addSampleHistoryData()` untuk menambahkan data contoh
+4. Refresh halaman untuk melihat data
+
+## 🔍 **Fitur Debug & Testing**
+
+### **Fungsi Console**
+```javascript
+// Tampilkan semua data
+showStorageData()
+
+// Tambah data contoh
+addSampleHistoryData()
+
+// Reset semua data
+clearAllData()
+
+// Export data ke JSON
+exportData()
+```
+
+### **Testing CRUD Operations**
+1. **Create**: Pilih kereta → Klik "PILIH"
+2. **Read**: Lihat di halaman History
+3. **Update**: Klik "Batalkan" untuk mengubah status
+4. **Delete**: Fungsi delete tersedia di backend logic
+
+## 📊 **Alur Kerja Aplikasi**
+
+```
+1. Landing Page → Pilih stasiun & tanggal
+2. Train Search → Lihat hasil pencarian
+3. Select Train → Konfirmasi pemesanan
+4. History Page → Lihat riwayat
+5. Profile Page → Kelola profil
+```
+
+## 🎯 **Fokus Pembelajaran**
+
+### **JavaScript Concepts**
+- Array manipulation (map, filter, reduce, forEach)
+- localStorage API
+- Event handling
+- DOM manipulation
+- Object-oriented programming
+
+### **Web Development**
+- Responsive web design
+- Form validation
+- User experience (UX)
+- Data persistence
+- Browser storage
+
+## 🔧 **Troubleshooting**
+
+### **Masalah Umum**
+1. **Data tidak tersimpan**: Pastikan localStorage tersedia
+2. **Form tidak valid**: Check console untuk error messages
+3. **Layout rusak**: Clear browser cache (Ctrl+F5)
+
+### **Browser Support**
+- Chrome 60+
+- Firefox 55+
+- Safari 11+
+- Edge 79+
+
+## 🤝 **Kontribusi**
+
+### **Untuk Pengembangan**
+1. Fork repository
+2. Buat branch baru (`feature/nama-fitur`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push ke branch (`git push origin feature/nama-fitur`)
+5. Buat Pull Request
+
+### **Bug Report**
+1. Deskripsi bug
+2. Langkah reproduksi
+3. Expected vs Actual behavior
+4. Screenshot jika ada
+
+## 📝 **Lisensi**
+Proyek ini dibuat untuk tujuan edukasi dan tugas akademik. Bebas digunakan dan dimodifikasi dengan menyertakan credit.
+
+## 👨‍💻 **Pengembang**
+**Nama**: [Nama Anda]
+**NIM**: [NIM Anda]
+**Mata Kuliah**: Pemrograman Web
+**Institusi**: [Nama Kampus/Universitas]
+
+---
+
+## 🎓 **Untuk Presentasi Tugas**
+
+### **Poin yang Bisa Ditunjukkan:**
+1. **CRUD Operations** dengan Array
+2. **localStorage Implementation**
+3. **Data Filtering & Searching**
+4. **Responsive Design**
+5. **User Flow yang Lengkap**
+
+### **Demo Steps:**
+1. Show empty state
+2. Add sample data
+3. Demonstrate filtering
+4. Show statistics update
+5. Export data functionality
+
+### **Q&A Preparation:**
+- Bagaimana sistem penyimpanan data bekerja?
+- Bagaimana implementasi CRUD dengan Array?
+- Bagaimana cara filter data yang efisien?
+- Bagaimana mengatasi keterbatasan localStorage?
