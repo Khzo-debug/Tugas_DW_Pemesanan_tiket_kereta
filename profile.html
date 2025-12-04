@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna - TiketKeretaMaksi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="landing.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="train-search.html"><i class="fas fa-train"></i> Tiket Kereta</a></li>                <li><a href="history.html"><i class="fas fa-history"></i> Riwayat</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="login.html" class="btn-login"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="profile-page">
+        <h1><i class="fas fa-user-circle"></i> Profil Saya</h1>
+        
+        <div class="profile-grid">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <!-- Profile Photo -->
+                <div class="profile-photo">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Andi Wijaya</h3>
+                    <div class="member-status">Gold Member</div>
+                </div>
+                
+                <!-- Menu -->
+                <div class="profile-menu">
+                    <a href="#" class="profile-menu-item active" data-tab="info">
+                        <i class="fas fa-user"></i> Info Profil
+                    </a>
+                    <a href="#" class="profile-menu-item" data-tab="security">
+                        <i class="fas fa-shield-alt"></i> Keamanan
+                    </a>
+                    <a href="#" class="profile-menu-item" data-tab="preferences">
+                        <i class="fas fa-cog"></i> Pengaturan
+                    </a>
+                    <a href="#" class="profile-menu-item" data-tab="notifications">
+                        <i class="fas fa-bell"></i> Notifikasi
+                    </a>
+                    <a href="#" class="profile-menu-item" data-tab="help">
+                        <i class="fas fa-question-circle"></i> Bantuan
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="profile-content" id="profile-content">
+                <!-- Profile Info Tab (Default) -->
+                <div class="profile-tab active" id="info-tab">
+                    <h2><i class="fas fa-user-edit"></i> Edit Profil</h2>
+                    
+                    <form class="profile-form" id="profile-form">
+                        <div class="form-group-half">
+                            <div class="form-group">
+                                <label for="first-name">Nama Depan</label>
+                                <input type="text" id="first-name" value="Andi">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Nama Belakang</label>
+                                <input type="text" id="last-name" value="Wijaya">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="andi.wijaya@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" value="+62 812-3456-7890">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthdate">Tanggal Lahir</label>
+                            <input type="date" id="birthdate" value="1990-05-15">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Alamat</label>
+                            <textarea id="address" rows="3">Jl. Sudirman No. 123, Jakarta Pusat</textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-search">
+                            <i class="fas fa-save"></i> SIMPAN PERUBAHAN
+                        </button>
+                    </form>
+                    
+                    <!-- Membership Card -->
+                    <div class="membership-card">
+                        <h2><i class="fas fa-crown"></i> Keanggotaan Gold</h2>
+                        <div class="membership-info">
+                            <div>
+                                <div class="points-label">Poin Saat Ini</div>
+                                <div class="points-value">1,250</div>
+                                <div class="points-note">Butuh 750 poin lagi untuk naik ke Platinum</div>
+                            </div>
+                            <div class="status-info">
+                                <div class="status-label">Status</div>
+                                <div class="status-value">AKTIF</div>
+                                <div class="benefit-badge">15% Cashback</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Tab -->
+                <div class="profile-tab" id="security-tab">
+                    <h2><i class="fas fa-shield-alt"></i> Keamanan Akun</h2>
+                    <!-- Add security content here -->
+                </div>
+                
+                <!-- Preferences Tab -->
+                <div class="profile-tab" id="preferences-tab">
+                    <h2><i class="fas fa-cog"></i> Pengaturan</h2>
+                    <!-- Add preferences content here -->
+                </div>
+                
+                <!-- Notifications Tab -->
+                <div class="profile-tab" id="notifications-tab">
+                    <h2><i class="fas fa-bell"></i> Notifikasi</h2>
+                    <!-- Add notifications content here -->
+                </div>
+                
+                <!-- Help Tab -->
+                <div class="profile-tab" id="help-tab">
+                    <h2><i class="fas fa-question-circle"></i> Bantuan</h2>
+                    <!-- Add help content here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h3>
+                <p>Platform pemesanan tiket kereta dan taksi online terpercaya di Indonesia.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="train-search.html">Tiket Kereta</a></li>
+                    <li><a href="#">Tiket Pesawat</a></li>
+                    <li><a href="#">Hotel</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Perusahaan</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TiketKeretaMaksi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

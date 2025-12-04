@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiketKeretaMaksi - Pemesanan Tiket Kereta & Taksi Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="landing.html" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="train-search.html"><i class="fas fa-train"></i> Tiket Kereta</a></li>
+                <li><a href="history.html"><i class="fas fa-history"></i> Riwayat</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Pesan Tiket Kereta & Taksi dalam Satu Platform</h2>
+            <p>Perjalanan nyaman dan hemat dengan kemudahan pemesanan online</p>
+            <a href="train-search.html" class="btn-hero btn-train"><i class="fas fa-train"></i> Pesan Tiket Kereta</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Kereta Api">
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">Mengapa Memilih TiketKeretaMaksi?</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Cepat & Mudah</h3>
+                <p>Pemesanan hanya dalam beberapa langkah saja</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Aman & Terpercaya</h3>
+                <p>Pembayaran aman dengan sistem terenkripsi</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Bantuan 24/7</h3>
+                <p>Customer service siap membantu kapan saja</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3>Harga Terbaik</h3>
+                <p>Garansi harga terbaik dengan banyak promo</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="search-tabs">
+            <button class="tab-btn active" data-tab="train-tab">TIKET KERETA</button>
+        <div id="train-tab" class="tab-content active">
+            <div id="loading-stations">
+                <i class="fas fa-spinner fa-spin"></i> Memuat data stasiun...
+            </div>
+            <form class="search-form" id="train-search-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from-station"><i class="fas fa-map-marker-alt"></i> Stasiun Asal</label>
+                        <input type="text" id="from-station" placeholder="Ketik nama stasiun..." autocomplete="off" required>
+                        <div id="from-station-suggestions" class="suggestions-container"></div>
+                        <input type="hidden" id="from-station-id">
+                        <input type="hidden" id="from-station-lat">
+                        <input type="hidden" id="from-station-lng">
+                    </div>
+                    <div class="form-group">
+                        <label for="to-station"><i class="fas fa-map-marker-alt"></i> Stasiun Tujuan</label>
+                        <input type="text" id="to-station" placeholder="Ketik nama stasiun..." autocomplete="off" required>
+                        <div id="to-station-suggestions" class="suggestions-container"></div>
+                        <input type="hidden" id="to-station-id">
+                        <input type="hidden" id="to-station-lat">
+                        <input type="hidden" id="to-station-lng">
+                    </div>
+                </div>
+
+                <div class="swap-container">
+                    <button type="button" id="swap-stations" class="btn-swap" title="Tukar stasiun">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                </div>
+
+                <div class="map-container" id="route-map" style="display: none;">
+                    <h3><i class="fas fa-map-marked-alt"></i> Rute Perjalanan</h3>
+                    <div id="map"></div>
+                    <div id="route-info" class="route-info"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departure-date"><i class="far fa-calendar-alt"></i> Tanggal Berangkat</label>
+                        <input type="date" id="departure-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passenger-count"><i class="fas fa-users"></i> Penumpang</label>
+                        <select id="passenger-count">
+                            <option value="1">1 Penumpang</option>
+                            <option value="2" selected>2 Penumpang</option>
+                            <option value="3">3 Penumpang</option>
+                            <option value="4">4 Penumpang</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-search"><i class="fas fa-search"></i> CARI TIKET KERETA</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <h2 class="section-title">Promo Spesial Hari Ini</h2>
+        <div class="promo-container">
+            <div class="promo-card">
+                <div class="promo-badge">HOT</div>
+                <div class="promo-content">
+                    <h3>Diskon 30% Tiket Kereta</h3>
+                    <p>Kode promo: <strong>KERETA30</strong></p>
+                    <p>Berlaku untuk semua rute hingga 31 Desember 2023</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-badge">NEW</div>
+                <div class="promo-content">
+                    <h3>Taksi Pertama Gratis</h3>
+                    <p>Untuk pengguna baru aplikasi TiketKeretaMaksi</p>
+                    <p>Maksimal Rp 50.000 untuk perjalanan pertama</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-badge">LIMITED</div>
+                <div class="promo-content">
+                    <h3>Cashback 20%</h3>
+                    <p>Kode promo: <strong>CASHBACK20</strong></p>
+                    <p>Untuk pemesanan tiket kereta & taksi paket</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h3>
+                <p>Platform pemesanan tiket kereta dan taksi online terpercaya di Indonesia.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="train-search.html">Tiket Kereta</a></li>
+                    <li><a href="#">Tiket Pesawat</a></li>
+                    <li><a href="#">Hotel</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Perusahaan</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TiketKeretaMaksi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

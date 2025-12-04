@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pemesanan - TiketKeretaMaksi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="landing.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="train-search.html"><i class="fas fa-train"></i> Tiket Kereta</a></li>
+                <li><a href="history.html" class="active"><i class="fas fa-history"></i> Riwayat</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="history-page">
+        <h1><i class="fas fa-history"></i> Riwayat Pemesanan</h1>
+        
+        <!-- Filter Tabs -->
+        <div class="history-tabs">
+            <button class="history-tab-btn active" data-filter="all">Semua</button>
+            <button class="history-tab-btn" data-filter="train">Tiket Kereta</button>
+            <button class="history-tab-btn" data-filter="upcoming">Akan Datang</button>
+            <button class="history-tab-btn" data-filter="completed">Selesai</button>
+            <button class="history-tab-btn" data-filter="cancelled">Dibatalkan</button>
+        </div>
+
+        <!-- Filter Tambahan -->
+        <div class="history-filters">
+            <div class="filter-group">
+                <label for="date-filter"><i class="far fa-calendar-alt"></i> Periode:</label>
+                <select id="date-filter">
+                    <option value="all">Semua Waktu</option>
+                    <option value="today">Hari Ini</option>
+                    <option value="week">7 Hari Terakhir</option>
+                    <option value="month">Bulan Ini</option>
+                    <option value="3months">3 Bulan Terakhir</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort-filter"><i class="fas fa-sort"></i> Urutkan:</label>
+                <select id="sort-filter">
+                    <option value="newest">Terbaru</option>
+                    <option value="oldest">Terlama</option>
+                    <option value="price-high">Harga Tertinggi</option>
+                    <option value="price-low">Harga Terendah</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <button class="btn-filter-reset" id="reset-filters">
+                    <i class="fas fa-redo"></i> Reset Filter
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="history-search">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-history" placeholder="Cari berdasarkan nama kereta/taksi, nomor pemesanan...">
+            </div>
+            <div class="search-info">
+                <span id="search-results-count">5</span> pesanan ditemukan
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="history-empty" id="history-empty">
+            <div class="empty-icon">
+                <i class="fas fa-history fa-3x"></i>
+            </div>
+            <h2>Belum Ada Riwayat Pemesanan</h2>
+            <p>Mulai pesan tiket kereta atau taksi untuk melihat riwayat pemesanan Anda di sini.</p>
+            <div class="empty-actions">
+                <a href="train-search.html" class="btn-primary">
+                    <i class="fas fa-train"></i> Pesan Tiket Kereta
+                </a>
+            </div>
+        </div>
+
+        <!-- History Items Container -->
+        <div class="history-container" id="history-container"></div>
+
+        <!-- Pagination -->
+        <div class="history-pagination" id="history-pagination">
+            <button class="pagination-btn" id="prev-page" disabled>
+                <i class="fas fa-chevron-left"></i> Sebelumnya
+            </button>
+            <div class="page-numbers" id="page-numbers">
+                <span class="page-number active">1</span>
+            </div>
+            <button class="pagination-btn" id="next-page">
+                Selanjutnya <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="history-stats" id="history-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-train"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="train-count">3</div>
+                    <div class="stat-label">Tiket Kereta</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="total-spent">Rp 1,490,000</div>
+                    <div class="stat-label">Total Pengeluaran</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="upcoming-count">1</div>
+                    <div class="stat-label">Akan Datang</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-train"></i> TiketKereta<span>Maksi</span></h3>
+                <p>Platform pemesanan tiket kereta dan taksi online terpercaya di Indonesia.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="train-search.html">Tiket Kereta</a></li>
+                    <li><a href="#">Tiket Pesawat</a></li>
+                    <li><a href="#">Hotel</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Perusahaan</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TiketKeretaMaksi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>
