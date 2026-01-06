@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { border-color: #4CAF50; background-color: #f8fff8; }
+        .error { border-color: #f44336; background-color: #fff8f8; }
+        .loading { border-color: #ff9800; background-color: #fffbf8; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Train Ticket Booking System - API Test</h1>
+
+    <div id="stations-test" class="test-section loading">
+        <h3>🛤️ Testing Train Stations API</h3>
+        <button onclick="testStations()">Test Stations</button>
+        <div id="stations-result"></div>
+    </div>
+
+    <div id="trains-test" class="test-section loading">
+        <h3>🚂 Testing Trains API</h3>
+        <button onclick="testTrains()">Test Trains</button>
+        <div id="trains-result"></div>
+    </div>
+
+    <div id="schedules-test" class="test-section loading">
+        <h3>📅 Testing Schedules API</h3>
+        <button onclick="testSchedules()">Test Schedules</button>
+        <div id="schedules-result"></div>
+    </div>
+
+    <div id="booking-test" class="test-section loading">
+        <h3>🎫 Testing Booking Creation</h3>
+        <button onclick="testBooking()">Test Booking</button>
+        <div id="booking-result"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        async function testStations() {
+            const section = document.getElementById('stations-test');
+            const result = document.getElementById('stations-result');
+
+            try {
+                section.className = 'test-section loading';
+                result.innerHTML = 'Loading...';
+
+                const response = await fetch('http://localhost:3001/api/stations');
+                const data = await response.json();
+
+                section.className = 'test-section success';
+                result.innerHTML = `
+                    <p>✅ Successfully fetched ${data.length} stations</p>
+                    <pre>${JSON.stringify(data.slice(0, 3), null, 2)}</pre>
+                `;
+            } catch (error) {
+                section.className = 'test-section error';
+                result.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testTrains() {
+            const section = document.getElementById('trains-test');
+            const result = document.getElementById('trains-result');
+
+            try {
+                section.className = 'test-section loading';
+                result.innerHTML = 'Loading...';
+
+                const response = await fetch('http://localhost:3001/api/trains');
+                const data = await response.json();
+
+                section.className = 'test-section success';
+                result.innerHTML = `
+                    <p>✅ Successfully fetched ${data.length} trains</p>
+                    <pre>${JSON.stringify(data.slice(0, 3), null, 2)}</pre>
+                `;
+            } catch (error) {
+                section.className = 'test-section error';
+                result.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testSchedules() {
+            const section = document.getElementById('schedules-test');
+            const result = document.getElementById('schedules-result');
+
+            try {
+                section.className = 'test-section loading';
+                result.innerHTML = 'Loading...';
+
+                const response = await fetch('http://localhost:3001/api/schedules');
+                const data = await response.json();
+
+                section.className = 'test-section success';
+                result.innerHTML = `
+                    <p>✅ Successfully fetched ${data.length} schedules</p>
+                    <pre>${JSON.stringify(data.slice(0, 2), null, 2)}</pre>
+                `;
+            } catch (error) {
+                section.className = 'test-section error';
+                result.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testBooking() {
+            const section = document.getElementById('booking-test');
+            const result = document.getElementById('booking-result');
+
+            try {
+                section.className = 'test-section loading';
+                result.innerHTML = 'Loading...';
+
+                // First, we need to create a test user
+                const userResponse = await fetch('http://localhost:3001/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        first_name: 'Test',
+                        last_name: 'User',
+                        email: 'test@example.com',
+                        password_hash: 'password123',
+                        phone: '08123456789'
+                    })
+                });
+
+                if (!userResponse.ok) {
+                    throw new Error('Failed to create test user');
+                }
+
+                const userData = await userResponse.json();
+
+                // Now create a booking
+                const bookingResponse = await fetch('http://localhost:3001/api/bookings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: userData.user_id,
+                        schedule_id: 1,
+                        departure_date: '2024-01-15',
+                        adult_passengers: 1,
+                        total_passengers: 1,
+                        total_price: 250000
+                    })
+                });
+
+                if (!bookingResponse.ok) {
+                    throw new Error('Failed to create booking');
+                }
+
+                const bookingData = await bookingResponse.json();
+
+                section.className = 'test-section success';
+                result.innerHTML = `
+                    <p>✅ Successfully created booking</p>
+                    <pre>${JSON.stringify(bookingData, null, 2)}</pre>
+                `;
+            } catch (error) {
+                section.className = 'test-section error';
+                result.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', async () => {
+            setTimeout(async () => {
+                await testStations();
+                await testTrains();
+                await testSchedules();
+                await testBooking();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

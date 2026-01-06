@@ -1,96 +1,293 @@
-// ============================================
-// SISTEM PENYIMPANAN DATA - ARRAY/LOCALSTORAGE
-// ============================================
+// API CONNECTION TO BACKEND DATABASE
 
-// Kunci penyimpanan
+const API_BASE_URL = 'http://localhost:3001/api';
+
+// Storage keys for localStorage
 const STORAGE_KEYS = {
-    HISTORY: 'tiketkeretamaksi_history',
-    PROFILE: 'tiketkeretamaksi_profile',
-    LAST_SEARCH: 'tiketkeretamaksi_last_search'
+    HISTORY: 'train_history',
+    PROFILE: 'user_profile',
+    LAST_SEARCH: 'last_search'
 };
 
-// Data stasiun kereta (static untuk demo)
-const TRAIN_STATIONS = [
-    { id: 1, name: "Gambir", city: "Jakarta", code: "GMR" },
-    { id: 2, name: "Bandung", city: "Bandung", code: "BD" },
-    { id: 3, name: "Surabaya Gubeng", city: "Surabaya", code: "SGU" },
-    { id: 4, name: "Yogyakarta", city: "Yogyakarta", code: "YK" },
-    { id: 5, name: "Malang", city: "Malang", code: "ML" },
-    { id: 6, name: "Semarang Tawang", city: "Semarang", code: "SMT" },
-    { id: 7, name: "Solo Balapan", city: "Solo", code: "SLO" },
-    { id: 8, name: "Cirebon", city: "Cirebon", code: "CN" },
-    { id: 9, name: "Bekasi", city: "Bekasi", code: "BKS" },
-    { id: 10, name: "Tangerang", city: "Tangerang", code: "TNG" }
-];
+// Global variables for current user session
+let currentUser = null;
+let trainStations = [];
+let availableTrains = [];
 
-// Data kereta contoh
-const SAMPLE_TRAINS = [
-    {
-        id: 1,
-        name: "Argo Bromo Anggrek",
-        class: "Eksekutif",
-        from: "Gambir (GMR)",
-        to: "Surabaya Gubeng (SGU)",
-        departure: "08:00",
-        arrival: "15:30",
-        duration: "7 jam 30 menit",
-        price: 450000,
-        seats: 42
-    },
-    {
-        id: 2,
-        name: "Taksaka",
-        class: "Eksekutif",
-        from: "Gambir (GMR)",
-        to: "Yogyakarta (YK)",
-        departure: "10:30",
-        arrival: "16:45",
-        duration: "6 jam 15 menit",
-        price: 350000,
-        seats: 28
-    },
-    {
-        id: 3,
-        name: "Sembrani",
-        class: "Bisnis",
-        from: "Gambir (GMR)",
-        to: "Surabaya Gubeng (SGU)",
-        departure: "21:00",
-        arrival: "05:30",
-        duration: "8 jam 30 menit",
-        price: 280000,
-        seats: 56
-    }
-];
+// Initialize API connection and load data
+async function initAPI() {
+    try {
+        // Load train stations
+        const stationsResponse = await fetch(`${API_BASE_URL}/stations`);
+        if (stationsResponse.ok) {
+            trainStations = await stationsResponse.json();
+        }
 
-// Inisialisasi storage saat pertama kali load
-function initStorage() {
-    // Jika history belum ada, buat array kosong
-    if (!localStorage.getItem(STORAGE_KEYS.HISTORY)) {
-        localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify([]));
-    }
-    
-    // Jika profile belum ada, buat data default
-    if (!localStorage.getItem(STORAGE_KEYS.PROFILE)) {
-        const defaultProfile = {
-            firstName: "Andi",
-            lastName: "Wijaya",
-            email: "andi.wijaya@email.com",
-            phone: "+62 812-3456-7890",
-            birthdate: "1990-05-15",
-            address: "Jl. Sudirman No. 123, Jakarta Pusat",
-            membership: {
-                level: "Gold",
-                points: 1250,
-                status: "AKTIF",
-                benefits: ["15% Cashback", "Priority Support"]
-            }
-        };
-        localStorage.setItem(STORAGE_KEYS.PROFILE, JSON.stringify(defaultProfile));
+        // Load trains
+        const trainsResponse = await fetch(`${API_BASE_URL}/trains`);
+        if (trainsResponse.ok) {
+            availableTrains = await trainsResponse.json();
+        }
+
+        // Check for existing user session
+        const userData = localStorage.getItem('current_user');
+        if (userData) {
+            currentUser = JSON.parse(userData);
+        }
+
+        console.log('API initialized successfully');
+    } catch (error) {
+        console.error('Error initializing API:', error);
+        // Fallback to demo data if API is not available
+        initFallbackData();
     }
 }
 
-// Kelas untuk mengelola penyimpanan data
+// Fallback data for demo purposes
+function initFallbackData() {
+    trainStations = [
+        { station_id: 1, station_name: "Gambir", city: "Jakarta", station_code: "GMR" },
+        { station_id: 2, station_name: "Bandung", city: "Bandung", station_code: "BD" },
+        { station_id: 3, station_name: "Surabaya Gubeng", city: "Surabaya", station_code: "SGU" },
+        { station_id: 4, station_name: "Yogyakarta", city: "Yogyakarta", station_code: "YK" },
+        { station_id: 5, station_name: "Malang", city: "Malang", station_code: "ML" },
+        { station_id: 6, station_name: "Semarang Tawang", city: "Semarang", station_code: "SMT" },
+        { station_id: 7, station_name: "Solo Balapan", city: "Solo", station_code: "SLO" },
+        { station_id: 8, station_name: "Cirebon", city: "Cirebon", station_code: "CN" }
+    ];
+
+    availableTrains = [
+        {
+            train_id: 1,
+            train_name: "Argo Bromo Anggrek",
+            class: "Eksekutif",
+            base_price: 450000
+        },
+        {
+            train_id: 2,
+            train_name: "Taksaka",
+            class: "Eksekutif",
+            base_price: 350000
+        },
+        {
+            train_id: 3,
+            train_name: "Sembrani",
+            class: "Bisnis",
+            base_price: 280000
+        }
+    ];
+}
+
+// API Service class for database operations
+class APIService {
+
+    // ========== AUTHENTICATION ==========
+
+    static async login(email, password) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Login failed');
+            }
+
+            const userData = await response.json();
+            currentUser = userData;
+            localStorage.setItem('current_user', JSON.stringify(userData));
+            return userData;
+        } catch (error) {
+            console.error('Login error:', error);
+            throw error;
+        }
+    }
+
+    static async register(userData) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Registration failed');
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Registration error:', error);
+            throw error;
+        }
+    }
+
+    static logout() {
+        currentUser = null;
+        localStorage.removeItem('current_user');
+    }
+
+    // ========== BOOKINGS ==========
+
+    static async getBookings(userId = currentUser?.user_id) {
+        if (!userId) throw new Error('User not logged in');
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/bookings/${userId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch bookings');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching bookings:', error);
+            return [];
+        }
+    }
+
+    static async createBooking(bookingData) {
+        if (!currentUser) throw new Error('User not logged in');
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/bookings`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: currentUser.user_id,
+                    ...bookingData
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Booking failed');
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Booking error:', error);
+            throw error;
+        }
+    }
+
+    static async updateBookingStatus(bookingId, status) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/bookings/${bookingId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update booking status');
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Error updating booking status:', error);
+            throw error;
+        }
+    }
+
+    // ========== TRAIN SCHEDULES ==========
+
+    static async getSchedules(filters = {}) {
+        try {
+            const params = new URLSearchParams();
+            if (filters.from) params.append('from', filters.from);
+            if (filters.to) params.append('to', filters.to);
+            if (filters.date) params.append('date', filters.date);
+
+            const response = await fetch(`${API_BASE_URL}/schedules?${params}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch schedules');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching schedules:', error);
+            return [];
+        }
+    }
+
+    // ========== USER PROFILE ==========
+
+    static async getUserProfile(userId = currentUser?.user_id) {
+        if (!userId) return null;
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/users/${userId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch user profile');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching user profile:', error);
+            return null;
+        }
+    }
+
+    static async updateUserProfile(userData) {
+        // For now, we'll store profile updates locally
+        // In a real app, this would make an API call to update the user
+        if (currentUser) {
+            currentUser = { ...currentUser, ...userData };
+            localStorage.setItem('current_user', JSON.stringify(currentUser));
+        }
+        return currentUser;
+    }
+
+    // ========== STATISTICS ==========
+
+    static async getStatistics(userId = currentUser?.user_id) {
+        if (!userId) return { trainCount: 0, totalSpent: 0, upcomingCount: 0, completedCount: 0, cancelledCount: 0 };
+
+        try {
+            const bookings = await this.getBookings(userId);
+            const stats = {
+                trainCount: bookings.length,
+                totalSpent: 0,
+                upcomingCount: 0,
+                completedCount: 0,
+                cancelledCount: 0
+            };
+
+            bookings.forEach(booking => {
+                stats.totalSpent += booking.total_price || 0;
+
+                switch (booking.booking_status) {
+                    case 'PENDING':
+                    case 'CONFIRMED':
+                        stats.upcomingCount++;
+                        break;
+                    case 'COMPLETED':
+                        stats.completedCount++;
+                        break;
+                    case 'CANCELLED':
+                        stats.cancelledCount++;
+                        break;
+                }
+            });
+
+            return stats;
+        } catch (error) {
+            console.error('Error calculating statistics:', error);
+            return { trainCount: 0, totalSpent: 0, upcomingCount: 0, completedCount: 0, cancelledCount: 0 };
+        }
+    }
+}
+
+// Legacy compatibility functions for existing code
 class DataStorage {
     
     // ========== FUNGSI UNTUK HISTORY ==========
@@ -300,9 +497,7 @@ class DataStorage {
     }
 }
 
-// ============================================
 // INISIALISASI SAAT HALAMAN LOAD
-// ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
     // Inisialisasi storage
@@ -450,9 +645,7 @@ function checkCurrentPage() {
     }
 }
 
-// ============================================
 // FUNGSI UNTUK HALAMAN HISTORY
-// ============================================
 
 function initHistoryPage() {
     // Load data dari storage
@@ -573,7 +766,6 @@ function createHistoryItemHTML(item) {
 }
 
 function setupHistoryEventListeners() {
-    // Filter tabs - Hapus tab taxi
     document.querySelectorAll('.history-tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             // Update active tab
@@ -667,11 +859,6 @@ function updateHistoryStatistics() {
     document.getElementById('train-count').textContent = stats.trainCount;
     document.getElementById('total-spent').textContent = `Rp ${stats.totalSpent.toLocaleString()}`;
     document.getElementById('upcoming-count').textContent = stats.upcomingCount;
-    
-    // Hide taxi related stats
-    const taxiCountElement = document.getElementById('taxi-count');
-    if (taxiCountElement) {
-        taxiCountElement.textContent = '0';
     }
 }
 
