@@ -9,7 +9,7 @@ Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi we
 
 Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem pemesanan tiket berbasis web serta meningkatkan keterampilan dalam menerapkan operasi CRUD dan pengelolaan data menggunakan JavaScript sebagai penghubung antara teori dan praktik pemrograman.
 
-## ✨ **Fitur Utama**
+## **Fitur Utama**
 
 ### **Fitur Beranda**
 - Menjadi halaman utama aplikasi TiketKeretaMaksi
@@ -18,7 +18,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Menyediakan informasi promo, diskon, dan penawaran khusus yang sedang berlangsung
 - Menampilkan pengumuman atau informasi terbaru terkait layanan kereta api
 
-### 🎟️ **Pemesanan Tiket Kereta**
+### **Pemesanan Tiket Kereta**
 - Pencarian rute berdasarkan stasiun asal & tujuan
 - Tanggal keberangkatan dan tanggal pulang (untuk perjalanan pulang pergi)
 - Pilihan jumlah penumpang (dewasa & anak)
@@ -26,7 +26,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Menyediakan tombol pencarian tiket kereta
 - Menampilkan hasil pencarian berupa daftar tiket yang tersedia
 
-### 📊 **Fitur Riwayat Pemesanan**
+### **Fitur Riwayat Pemesanan**
 - Menampilkan seluruh data pemesanan tiket yang telah dilakukan pengguna.
 - **CRUD Operations** lengkap (Create, Read, Update, Delete)
 - Penyimpanan data di **localStorage browser**
@@ -35,7 +35,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Pencarian data dengan autocomplete
 - Statistik otomatis dari data riwayat
 
-### 👤 **Profil**
+### **Profil**
 - Digunakan untuk melihat dan mengelola data pribadi pengguna.
 - Edit informasi profil pengguna yang terdiri dari nama, email, nomor telepon, tanggal lahir dan alamat
 - Sistem membership dengan poin
@@ -47,7 +47,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Menyediakan fitur lupa kata sandi
 - Menyediakan opsi login menggunakan akun Google dan Facebook
 
-## 🛠️ **Teknologi yang Digunakan**
+## **Teknologi yang Digunakan**
 
 ### **Frontend**
 - **HTML5** - Struktur halaman web
@@ -61,7 +61,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - **JavaScript Array Methods** - Manipulasi data (map, filter, reduce, forEach)
 - **JSON** - Format data serialization
 
-## 📁 **Struktur File Proyek**
+## **Struktur File Proyek**
 
 ```
 tiketkeretamaksi/
@@ -80,7 +80,7 @@ tiketkeretamaksi/
 └── README.md           # Dokumentasi proyek
 ```
 
-## 🗃️ **Struktur Data**
+## **Struktur Data**
 
 ### **Data History (Array of Objects)**
 ```javascript
@@ -120,50 +120,7 @@ tiketkeretamaksi/
 }
 ```
 
-## 🔧 **API Data Storage**
-
-### **Kelas DataStorage**
-```javascript
-// Inisialisasi
-DataStorage.getHistory()        // Ambil semua data history
-DataStorage.getProfile()        // Ambil data profil
-DataStorage.getStatistics()     // Ambil statistik
-
-// CRUD Operations
-DataStorage.addHistoryItem(item)     // Tambah data baru
-DataStorage.updateHistoryStatus(id, status)  // Update status
-DataStorage.deleteHistoryItem(id)    // Hapus data
-DataStorage.filterHistory(type)      // Filter data
-
-// Utility
-DataStorage.addSampleData()     // Tambah data contoh
-DataStorage.clearAllData()      // Reset semua data
-DataStorage.exportData()        // Export data ke JSON
-```
-
-### **Contoh Penggunaan**
-```javascript
-// Tambah data pemesanan baru
-const newBooking = {
-    type: 'train',
-    status: 'upcoming',
-    trainName: 'Argo Bromo',
-    from: 'Gambir',
-    to: 'Surabaya',
-    price: 450000
-};
-DataStorage.addHistoryItem(newBooking);
-
-// Filter data berdasarkan status
-const upcomingBookings = DataStorage.filterHistory('upcoming');
-
-// Ambil statistik
-const stats = DataStorage.getStatistics();
-console.log(`Total tiket: ${stats.trainCount}`);
-console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
-```
-
-## 🎨 **Fitur UI/UX**
+## **Fitur UI/UX**
 
 ### **Design System**
 - **Warna Primer**: `#3498db` (Biru), `#2c3e50` (Dark Blue)
@@ -179,35 +136,19 @@ console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
 - **Tabs** untuk navigasi
 - **Modals** untuk detail informasi
 
-## 📱 **Responsive Design**
+## **Responsive Design**
 - **Desktop** (>1024px) - Grid layout dengan sidebar
 - **Tablet** (768px-1024px) - Adaptive layout
 - **Mobile** (<768px) - Stacked layout dengan menu hamburger
 
-## 🔍 **Fitur Debug & Testing**
+## **Fitur Testing CRUD Operations**
 
-### **Fungsi Console**
-```javascript
-// Tampilkan semua data
-showStorageData()
-
-// Tambah data contoh
-addSampleHistoryData()
-
-// Reset semua data
-clearAllData()
-
-// Export data ke JSON
-exportData()
-```
-
-### **Testing CRUD Operations**
 1. **Create**: Pilih kereta → Klik "PILIH"
 2. **Read**: Lihat di halaman History
 3. **Update**: Klik "Batalkan" untuk mengubah status
 4. **Delete**: Fungsi delete tersedia di backend logic
 
-## 📊 **Alur Kerja Aplikasi**
+## **Alur Kerja Aplikasi**
 
 ```
 1. Landing Page → Pilih stasiun & tanggal
@@ -217,33 +158,24 @@ exportData()
 5. Profile Page → Kelola profil
 ```
 
-## 🎯 **Fokus Pembelajaran**
-
-### **JavaScript Concepts**
-- Array manipulation (map, filter, reduce, forEach)
-- localStorage API
-- Event handling
-- DOM manipulation
-- Object-oriented programming
-
-## 👨‍💻 **Pengembang**
+## **Pengembang**
 Proyek ini dikembangkan oleh kelompok 4 orang:
 
 **Anggota 1:**
-- **Nama**: [Nama Anggota 1]
-- **NIM**: [NIM Anggota 1]
+- **Nama**: Khoiril Chandra Kurniawan
+- **NPM**: (4524210049)
 
 **Anggota 2:**
-- **Nama**: [Khoiril Chandra K]
-- **NIM**: [4524210049]
+- **Nama**: Ririn Verdawati
+- **NPM**: (4524210090)
 
 **Anggota 3:**
-- **Nama**: [Nama Anggota 3]
-- **NIM**: [NIM Anggota 3]
+- **Nama**: Steven Marvellius Agusto Simatupang
+- **NPM**: (4524210098)
 
 **Anggota 4:**
-- **Nama**: [Nama Anggota 4]
-- **NIM**: [NIM Anggota 4]
+- **Nama**: Maria Natalia Alyssa Beli
+- **NPM**: (4524210133)
 
-**Mata Kuliah**: Pemrograman Web
-**Institusi**: [Universitas Pancasila]
+**Mata Kuliah**: PRAKTIKUM DESAIN WEB A
+**Institusi**: UNIVERSITAS PANCASILA
