@@ -1,22 +1,18 @@
 # **TiketKeretaMaksi - Aplikasi Pemesanan Tiket Kereta API**
 
 ## **Deskripsi Proyek**
-Perkembangan teknologi informasi telah membawa perubahan signifikan di berbagai sektor, termasuk transportasi, khususnya dalam sistem pemesanan tiket kereta api yang kini beralih dari metode konvensional ke digital. Pemesanan tiket secara daring memungkinkan pengguna mengakses informasi jadwal, harga, dan ketersediaan tiket secara cepat dan efisien tanpa harus datang ke stasiun.
+Perkembangan teknologi informasi telah membawa perubahan yang cukup besar di berbagai bidang, termasuk transportasi, khususnya dalam sistem pemesanan tiket kereta api yang biasanya dilakukan secara langsung di stasiun, kini beralih ke digital. Pemesanan tiket secara daring memungkinkan pengguna mengakses informasi jadwal, harga, dan ketersediaan tiket secara cepat dan efisien tanpa harus datang ke stasiun.
 
 Dalam bidang pendidikan, teknologi web berperan penting sebagai sarana pembelajaran untuk memahami pengembangan aplikasi berbasis web dan pengelolaan data. Konsep dasar seperti operasi Create, Read, Update, dan Delete (CRUD) menjadi fondasi utama dalam pembangunan sistem informasi, sehingga diperlukan aplikasi sederhana yang dapat merepresentasikan penerapan konsep tersebut.
 
-Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi web pemesanan tiket kereta api berbasis JavaScript yang menggunakan array dan localStorage sebagai media penyimpanan data. Aplikasi ini dirancang untuk mengelola data pemesanan secara lokal, sehingga memudahkan proses penyimpanan, pengambilan, pengubahan, dan penghapusan data.
-
-Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem pemesanan tiket berbasis web serta meningkatkan keterampilan dalam menerapkan operasi CRUD dan pengelolaan data menggunakan JavaScript sebagai penghubung antara teori dan praktik pemrograman.
+Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi web pemesanan tiket kereta api secara online, berbasis JavaScript yang menggunakan array dan localStorage sebagai media penyimpanan data. Aplikasi ini dirancang untuk mengelola data pemesanan secara lokal, sehingga memudahkan proses penyimpanan, pengambilan, pengubahan, dan penghapusan data.
 
 ## **Fitur Utama**
 
 ### **Fitur Beranda**
-- Menjadi halaman utama aplikasi TiketKeretaMaksi
 - Menampilkan informasi umum mengenai layanan pemesanan tiket kereta api secara online
 - Memberikan panduan singkat alur pemesanan tiket kepada pengguna
 - Menyediakan informasi promo, diskon, dan penawaran khusus yang sedang berlangsung
-- Menampilkan pengumuman atau informasi terbaru terkait layanan kereta api
 
 ### **Pemesanan Tiket Kereta**
 - Pencarian rute berdasarkan stasiun asal & tujuan
@@ -28,12 +24,11 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 
 ### **Fitur Riwayat Pemesanan**
 - Menampilkan seluruh data pemesanan tiket yang telah dilakukan pengguna.
-- **CRUD Operations** lengkap (Create, Read, Update, Delete)
-- Penyimpanan data di **localStorage browser**
 - Mengelompokkan tiket berdasarkan status (Semua, Akan Datang, Selesai, Dibatalkan)
 - Menyediakan fitur berdasarkan periode waktu tertentu dan pengurutan data tiket berdasarkan (terbaru, terlama, harga tertinggi, harga terendah)
 - Pencarian data dengan autocomplete
 - Statistik otomatis dari data riwayat
+- Penyimpanan data di **localStorage browser**
 
 ### **Profil**
 - Digunakan untuk melihat dan mengelola data pribadi pengguna.
