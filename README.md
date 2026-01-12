@@ -227,7 +227,23 @@ exportData()
 - Object-oriented programming
 
 ## 👨‍💻 **Pengembang**
-**Nama**: [Nama Anda]
-**NIM**: [NIM Anda]
+Proyek ini dikembangkan oleh kelompok 4 orang:
+
+**Anggota 1:**
+- **Nama**: [Nama Anggota 1]
+- **NIM**: [NIM Anggota 1]
+
+**Anggota 2:**
+- **Nama**: [Khoiril Chandra K]
+- **NIM**: [4524210049]
+
+**Anggota 3:**
+- **Nama**: [Nama Anggota 3]
+- **NIM**: [NIM Anggota 3]
+
+**Anggota 4:**
+- **Nama**: [Nama Anggota 4]
+- **NIM**: [NIM Anggota 4]
+
 **Mata Kuliah**: Pemrograman Web
-**Institusi**: [Nama Kampus/Universitas]
+**Institusi**: [Universitas Pancasila]

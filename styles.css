@@ -21,6 +21,65 @@ html {
 }
 
 /* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#train-results-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* ===============================
+   HISTORY
+=============================== */
+.history-item {
+  background: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  margin-bottom: 12px;
+}
+
+.history-item strong {
+  display: block;
+  font-size: 16px;
+  color: #111827;
+}
+
+.history-item div {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+
+/* ============================================
    HEADER & NAVIGATION (COMMON)
    ============================================ */
 header {
@@ -71,6 +130,9 @@ header {
     border-radius: 4px;
     transition: all 0.3s ease;
     font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav-links a:hover,
@@ -96,86 +158,238 @@ header {
     color: #2c3e50;
 }
 
+/* ===============================
+   AUTOCOMPLETE
+=============================== */
+.autocomplete-list {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 999;
+  border-radius: 6px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.autocomplete-list div {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.autocomplete-list div:hover {
+  background: #f1f5f9;
+}
+
+
 /* ============================================
-   FOOTER (COMMON)
+   BUTTONS
    ============================================ */
-footer {
-    background-color: #2c3e50;
+.btn-primary {
+    background: #3498db;
     color: white;
-    padding: 3rem 5% 1rem;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 1.5rem;
-    color: white;
-}
-
-.footer-section p {
-    color: #bdc3c7;
-    margin-bottom: 1.5rem;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-section ul li a {
-    color: #bdc3c7;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
 }
 
-.footer-section ul li a:hover {
-    color: #3498db;
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
 }
 
-.social-icons {
-    display: flex;
-    gap: 1rem;
+.btn-search {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
     margin-top: 1rem;
 }
 
-.social-icons a {
+.btn-search:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-action {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    font-family: 'Poppins';
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.btn-action:hover {
+    background: #f8f9fa;
+}
+
+.btn-action.primary {
+    background: #3498db;
     color: white;
-    background: rgba(255,255,255,0.1);
-    width: 40px;
-    height: 40px;
+    border-color: #3498db;
+}
+
+.btn-action.primary:hover {
+    background: #2980b9;
+}
+
+.btn-action.danger {
+    background: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+.btn-action.danger:hover {
+    background: #c0392b;
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
+.form-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.feature-card,
+.promo-card,
+.stat-card,
+.train-result-card,
+.history-item {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover,
+.train-result-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+.type-badge,
+.status-badge,
+.promo-badge,
+.train-class,
+.member-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.type-badge.train {
+    background: #e3f2fd;
+    color: #3498db;
+}
+
+.status-badge.completed {
+    background: #fef9e7;
+    color: #f39c12;
+}
+
+.status-badge.upcoming {
+    background: #f4ecf7;
+    color: #9b59b6;
+}
+
+.status-badge.cancelled {
+    background: #fdedec;
+    color: #e74c3c;
+}
+
+/* ============================================
+   ICONS
+   ============================================ */
+.feature-icon,
+.login-icon,
+.registration-icon,
+.stat-icon {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 auto 1.5rem;
 }
 
-.social-icons a:hover {
-    background: #3498db;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    color: #bdc3c7;
-    font-size: 0.9rem;
+.feature-icon {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
 }
 
 /* ============================================
-   LANDING PAGE STYLES
+   SECTIONS
    ============================================ */
 .hero {
     display: flex;
@@ -187,6 +401,35 @@ footer {
     min-height: 500px;
 }
 
+.section-title {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.features,
+.promo-section {
+    padding: 5rem 5%;
+    background-color: #fff;
+}
+
+.search-section {
+    padding: 3rem 5%;
+}
+
+.search-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   LANDING PAGE SPECIFIC
+   ============================================ */
 .hero-content {
     flex: 1;
     max-width: 600px;
@@ -236,19 +479,6 @@ footer {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* Features Section */
-.features {
-    padding: 5rem 5%;
-    background-color: #fff;
-}
-
-.section-title {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-}
-
 .features-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -257,41 +487,6 @@ footer {
     margin: 0 auto;
 }
 
-.feature-card {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
-.feature-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.feature-card h3 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.feature-card p {
-    color: #7f8c8d;
-}
-
-/* Search Section */
 .search-tabs {
     display: flex;
     justify-content: center;
@@ -315,47 +510,29 @@ footer {
     border-bottom-color: #3498db;
 }
 
-.search-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    max-width: 800px;
-    margin: 0 auto;
+.swap-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
+.btn-swap {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-.form-group {
-    position: relative;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins';
-    font-size: 1rem;
-}
-
-/* Promo Section */
-.promo-section {
-    padding: 4rem 5%;
-    background-color: #fff;
+.btn-swap:hover {
+    background-color: #2980b9;
+    transform: rotate(180deg);
 }
 
 .promo-container {
@@ -369,21 +546,8 @@ footer {
 .promo-card {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     color: white;
-    padding: 2rem;
-    border-radius: 10px;
     position: relative;
     overflow: hidden;
-}
-
-.promo-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.2);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
 }
 
 .promo-content h3 {
@@ -397,7 +561,7 @@ footer {
 }
 
 /* ============================================
-   LOGIN PAGE STYLES
+   LOGIN PAGE SPECIFIC
    ============================================ */
 .login-page {
     min-height: 100vh;
@@ -458,19 +622,6 @@ footer {
     margin-bottom: 2rem;
 }
 
-.login-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 2rem;
-}
-
 .login-title {
     color: #2c3e50;
     margin-bottom: 0.5rem;
@@ -481,34 +632,6 @@ footer {
 .login-subtitle {
     color: #7f8c8d;
     font-size: 1rem;
-}
-
-.login-form-group {
-    margin-bottom: 1.5rem;
-}
-
-.login-form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.login-form-group input {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.login-form-group input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .password-container {
@@ -629,24 +752,6 @@ footer {
 }
 
 /* Registration Form */
-.registration-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.registration-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 2rem;
-}
-
 .name-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -694,7 +799,7 @@ footer {
 }
 
 /* ============================================
-   HISTORY PAGE STYLES
+   HISTORY PAGE SPECIFIC
    ============================================ */
 .history-page {
     padding: 2rem 5%;
@@ -704,7 +809,6 @@ footer {
 }
 
 .history-page h1 {
-    color: #2c3e50;
     margin-bottom: 2rem;
     font-size: 2.2rem;
     display: flex;
@@ -833,9 +937,7 @@ footer {
 .history-empty {
     text-align: center;
     padding: 4rem 2rem;
-    background: white;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     margin-top: 2rem;
     display: none;
 }
@@ -847,7 +949,6 @@ footer {
 }
 
 .history-empty h2 {
-    color: #2c3e50;
     margin-bottom: 1rem;
     font-size: 1.8rem;
 }
@@ -867,25 +968,6 @@ footer {
     justify-content: center;
 }
 
-.btn-primary {
-    background: #3498db;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-}
-
-.btn-primary:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-}
-
 .history-container {
     display: grid;
     gap: 1rem;
@@ -893,13 +975,9 @@ footer {
 }
 
 .history-item {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid #3498db;
     display: grid;
     gap: 1rem;
-    border-left: 4px solid #3498db;
 }
 
 .history-item.cancelled {
@@ -933,45 +1011,11 @@ footer {
     color: #3498db;
 }
 
-.type-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.type-badge.train {
-    background: #e3f2fd;
-    color: #3498db;
-}
-
 .history-status {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
-}
-
-.status-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.status-badge.completed {
-    background: #fef9e7;
-    color: #f39c12;
-}
-
-.status-badge.upcoming {
-    background: #f4ecf7;
-    color: #9b59b6;
-}
-
-.status-badge.cancelled {
-    background: #fdedec;
-    color: #e74c3c;
 }
 
 .history-content {
@@ -1077,44 +1121,6 @@ footer {
     gap: 0.5rem;
 }
 
-.btn-action {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: white;
-    font-family: 'Poppins';
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.btn-action:hover {
-    background: #f8f9fa;
-}
-
-.btn-action.primary {
-    background: #3498db;
-    color: white;
-    border-color: #3498db;
-}
-
-.btn-action.primary:hover {
-    background: #2980b9;
-}
-
-.btn-action.danger {
-    background: #e74c3c;
-    color: white;
-    border-color: #e74c3c;
-}
-
-.btn-action.danger:hover {
-    background: #c0392b;
-}
-
 .history-pagination {
     display: flex;
     justify-content: center;
@@ -1181,26 +1187,12 @@ footer {
     margin-top: 3rem;
 }
 
-.stat-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
 .stat-icon {
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
+    margin: 0;
 }
 
 .stat-card:nth-child(2) .stat-icon {
@@ -1233,7 +1225,7 @@ footer {
 }
 
 /* ============================================
-   TRAIN SEARCH PAGE STYLES
+   TRAIN SEARCH PAGE SPECIFIC
    ============================================ */
 .train-search-page {
     padding: 2rem 5%;
@@ -1243,7 +1235,6 @@ footer {
 }
 
 .train-search-page h1 {
-    color: #2c3e50;
     margin-bottom: 2rem;
     font-size: 2.5rem;
 }
@@ -1261,7 +1252,6 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-
 #no-results {
     text-align: center;
     padding: 3rem;
@@ -1276,12 +1266,7 @@ footer {
 }
 
 #no-results h3 {
-    color: #2c3e50;
     margin-bottom: 1rem;
-}
-
-#no-results p {
-    color: #7f8c8d;
 }
 
 #train-results-container {
@@ -1291,14 +1276,11 @@ footer {
 }
 
 .train-result-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .train-icon {
@@ -1314,12 +1296,7 @@ footer {
 .train-class {
     background: #3498db;
     color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
     margin-top: 0.5rem;
-    display: inline-block;
 }
 
 .train-details {
@@ -1327,7 +1304,6 @@ footer {
 }
 
 .train-details h3 {
-    color: #2c3e50;
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
@@ -1352,12 +1328,6 @@ footer {
 .station {
     color: #7f8c8d;
     font-size: 0.9rem;
-}
-
-.route-duration {
-    text-align: center;
-    color: #3498db;
-    font-weight: 500;
 }
 
 .train-seats {
@@ -1399,7 +1369,7 @@ footer {
 }
 
 /* ============================================
-   PROFILE PAGE STYLES
+   PROFILE PAGE SPECIFIC
    ============================================ */
 .profile-page {
     padding: 2rem 5%;
@@ -1409,7 +1379,6 @@ footer {
 }
 
 .profile-page h1 {
-    color: #2c3e50;
     margin-bottom: 2rem;
     font-size: 2.2rem;
     display: flex;
@@ -1453,17 +1422,6 @@ footer {
     color: #2c3e50;
     margin-bottom: 0.5rem;
     font-size: 1.3rem;
-}
-
-.member-status {
-    display: inline-block;
-    background: #f39c12;
-    color: white;
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
 }
 
 .profile-menu {
@@ -1510,7 +1468,6 @@ footer {
 }
 
 .profile-tab h2 {
-    color: #2c3e50;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     display: flex;
@@ -1528,29 +1485,6 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-}
-
-.profile-form .form-group {
-    margin-bottom: 1rem;
-}
-
-.profile-form .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.profile-form .form-group input,
-.profile-form .form-group select,
-.profile-form .form-group textarea {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
 }
 
 .profile-form .form-group textarea {
@@ -1620,54 +1554,6 @@ footer {
 /* ============================================
    COMMON COMPONENTS
    ============================================ */
-.btn-search {
-    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.btn-search:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-}
-
-.swap-container {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.btn-swap {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.btn-swap:hover {
-    background-color: #2980b9;
-    transform: rotate(180deg);
-}
-
 .suggestions-container {
     position: absolute;
     background: white;
@@ -1713,6 +1599,84 @@ footer {
     font-size: 0.85rem;
     color: #7f8c8d;
     margin-left: auto;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 3rem 5% 1rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.footer-section p {
+    color: #bdc3c7;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #3498db;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: #3498db;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #bdc3c7;
+    font-size: 0.9rem;
 }
 
 /* ============================================
