@@ -11,30 +11,41 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 
 ## ✨ **Fitur Utama**
 
+### **Fitur Beranda**
+- Menjadi halaman utama aplikasi TiketKeretaMaksi
+- Menampilkan informasi umum mengenai layanan pemesanan tiket kereta api secara online
+- Memberikan panduan singkat alur pemesanan tiket kepada pengguna
+- Menyediakan informasi promo, diskon, dan penawaran khusus yang sedang berlangsung
+- Menampilkan pengumuman atau informasi terbaru terkait layanan kereta api
+
 ### 🎟️ **Pemesanan Tiket Kereta**
 - Pencarian rute berdasarkan stasiun asal & tujuan
-- Filter berdasarkan kelas kereta (Ekonomi, Bisnis, Eksekutif, Premium)
+- Tanggal keberangkatan dan tanggal pulang (untuk perjalanan pulang pergi)
 - Pilihan jumlah penumpang (dewasa & anak)
-- Sistem pemesanan dengan konfirmasi real-time
+- Pilihan kelas kereta (Ekonomi, Bisnis, Eksekutif, Premium)
+- Menyediakan tombol pencarian tiket kereta
+- Menampilkan hasil pencarian berupa daftar tiket yang tersedia
 
-### 📊 **Manajemen Data**
+### 📊 **Fitur Riwayat Pemesanan**
+- Menampilkan seluruh data pemesanan tiket yang telah dilakukan pengguna.
 - **CRUD Operations** lengkap (Create, Read, Update, Delete)
 - Penyimpanan data di **localStorage browser**
-- Filter data berdasarkan status (Semua, Akan Datang, Selesai, Dibatalkan)
+- Mengelompokkan tiket berdasarkan status (Semua, Akan Datang, Selesai, Dibatalkan)
+- Menyediakan fitur berdasarkan periode waktu tertentu dan pengurutan data tiket berdasarkan (terbaru, terlama, harga tertinggi, harga terendah)
 - Pencarian data dengan autocomplete
 - Statistik otomatis dari data riwayat
 
 ### 👤 **Profil**
-- Edit informasi profil pengguna
+- Digunakan untuk melihat dan mengelola data pribadi pengguna.
+- Edit informasi profil pengguna yang terdiri dari nama, email, nomor telepon, tanggal lahir dan alamat
 - Sistem membership dengan poin
 - Keanggotaan tier (Gold, Platinum)
 - Penyimpanan preferensi pengguna
 
-### 📈 **Riwayat Pemesanan**
-- Tampilan riwayat dalam format card
-- Filter berdasarkan tipe dan status
-- Statistik real-time
-- Export data ke format JSON
+### **Fitur Login**
+- Menyediakan form login dengan input email dan password
+- Menyediakan fitur lupa kata sandi
+- Menyediakan opsi login menggunakan akun Google dan Facebook
 
 ## 🛠️ **Teknologi yang Digunakan**
 
