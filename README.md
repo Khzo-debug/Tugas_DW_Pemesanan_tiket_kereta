@@ -1,7 +1,13 @@
-# 📖 **TiketKeretaMaksi - Aplikasi Pemesanan Tiket Kereta API**
+# **TiketKeretaMaksi - Aplikasi Pemesanan Tiket Kereta API**
 
-## 🚂 **Deskripsi Proyek**
-TiketKeretaMaksi adalah aplikasi web untuk pemesanan tiket kereta api online dengan sistem penyimpanan data menggunakan **JavaScript Array & localStorage**. Aplikasi ini dikembangkan sebagai proyek tugas dengan fokus pada implementasi **CRUD operations** dan **data management** menggunakan struktur data array.
+## **Deskripsi Proyek**
+Perkembangan teknologi informasi telah membawa perubahan signifikan di berbagai sektor, termasuk transportasi, khususnya dalam sistem pemesanan tiket kereta api yang kini beralih dari metode konvensional ke digital. Pemesanan tiket secara daring memungkinkan pengguna mengakses informasi jadwal, harga, dan ketersediaan tiket secara cepat dan efisien tanpa harus datang ke stasiun.
+
+Dalam bidang pendidikan, teknologi web berperan penting sebagai sarana pembelajaran untuk memahami pengembangan aplikasi berbasis web dan pengelolaan data. Konsep dasar seperti operasi Create, Read, Update, dan Delete (CRUD) menjadi fondasi utama dalam pembangunan sistem informasi, sehingga diperlukan aplikasi sederhana yang dapat merepresentasikan penerapan konsep tersebut.
+
+Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi web pemesanan tiket kereta api berbasis JavaScript yang menggunakan array dan localStorage sebagai media penyimpanan data. Aplikasi ini dirancang untuk mengelola data pemesanan secara lokal, sehingga memudahkan proses penyimpanan, pengambilan, pengubahan, dan penghapusan data.
+
+Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem pemesanan tiket berbasis web serta meningkatkan keterampilan dalam menerapkan operasi CRUD dan pengelolaan data menggunakan JavaScript sebagai penghubung antara teori dan praktik pemrograman.
 
 ## ✨ **Fitur Utama**
 
@@ -18,7 +24,7 @@ TiketKeretaMaksi adalah aplikasi web untuk pemesanan tiket kereta api online den
 - Pencarian data dengan autocomplete
 - Statistik otomatis dari data riwayat
 
-### 👤 **Manajemen Profil**
+### 👤 **Profil**
 - Edit informasi profil pengguna
 - Sistem membership dengan poin
 - Keanggotaan tier (Gold, Platinum)
@@ -167,24 +173,6 @@ console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
 - **Tablet** (768px-1024px) - Adaptive layout
 - **Mobile** (<768px) - Stacked layout dengan menu hamburger
 
-## 🚀 **Cara Menjalankan**
-
-### **Langkah 1: Clone/Download Proyek**
-```bash
-git clone [repository-url]
-cd tiketkeretamaksi
-```
-
-### **Langkah 2: Buka di Browser**
-1. Buka file `landing.html` di browser web
-2. Atau gunakan live server extension di VS Code
-
-### **Langkah 3: Demo Data**
-1. Buka halaman History
-2. Buka Developer Console (F12)
-3. Ketik `addSampleHistoryData()` untuk menambahkan data contoh
-4. Refresh halaman untuk melihat data
-
 ## 🔍 **Fitur Debug & Testing**
 
 ### **Fungsi Console**
@@ -227,70 +215,8 @@ exportData()
 - DOM manipulation
 - Object-oriented programming
 
-### **Web Development**
-- Responsive web design
-- Form validation
-- User experience (UX)
-- Data persistence
-- Browser storage
-
-## 🔧 **Troubleshooting**
-
-### **Masalah Umum**
-1. **Data tidak tersimpan**: Pastikan localStorage tersedia
-2. **Form tidak valid**: Check console untuk error messages
-3. **Layout rusak**: Clear browser cache (Ctrl+F5)
-
-### **Browser Support**
-- Chrome 60+
-- Firefox 55+
-- Safari 11+
-- Edge 79+
-
-## 🤝 **Kontribusi**
-
-### **Untuk Pengembangan**
-1. Fork repository
-2. Buat branch baru (`feature/nama-fitur`)
-3. Commit changes (`git commit -m 'Add feature'`)
-4. Push ke branch (`git push origin feature/nama-fitur`)
-5. Buat Pull Request
-
-### **Bug Report**
-1. Deskripsi bug
-2. Langkah reproduksi
-3. Expected vs Actual behavior
-4. Screenshot jika ada
-
-## 📝 **Lisensi**
-Proyek ini dibuat untuk tujuan edukasi dan tugas akademik. Bebas digunakan dan dimodifikasi dengan menyertakan credit.
-
 ## 👨‍💻 **Pengembang**
 **Nama**: [Nama Anda]
 **NIM**: [NIM Anda]
 **Mata Kuliah**: Pemrograman Web
 **Institusi**: [Nama Kampus/Universitas]
-
----
-
-## 🎓 **Untuk Presentasi Tugas**
-
-### **Poin yang Bisa Ditunjukkan:**
-1. **CRUD Operations** dengan Array
-2. **localStorage Implementation**
-3. **Data Filtering & Searching**
-4. **Responsive Design**
-5. **User Flow yang Lengkap**
-
-### **Demo Steps:**
-1. Show empty state
-2. Add sample data
-3. Demonstrate filtering
-4. Show statistics update
-5. Export data functionality
-
-### **Q&A Preparation:**
-- Bagaimana sistem penyimpanan data bekerja?
-- Bagaimana implementasi CRUD dengan Array?
-- Bagaimana cara filter data yang efisien?
-- Bagaimana mengatasi keterbatasan localStorage?
