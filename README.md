@@ -177,5 +177,4 @@ Proyek ini dikembangkan oleh kelompok 4 orang:
 - **Nama**: Maria Natalia Alyssa Beli
 - **NPM**: (4524210133)
 
-**Mata Kuliah**: PRAKTIKUM DESAIN WEB A
-**Institusi**: UNIVERSITAS PANCASILA
+**Mata Kuliah**: PRAKTIKUM DESAIN WEB A - UNIVERSITAS PANCASILA
