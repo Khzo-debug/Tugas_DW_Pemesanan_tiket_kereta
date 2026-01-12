@@ -238,8 +238,8 @@ Proyek ini dikembangkan oleh kelompok 4 orang:
 - **NIM**: [4524210049]
 
 **Anggota 3:**
-- **Nama**: [Nama Anggota 3]
-- **NIM**: [NIM Anggota 3]
+- **Nama**: [Steven Marvellius Agusto Simatupang]
+- **NIM**: [4524210098]
 
 **Anggota 4:**
 - **Nama**: [Nama Anggota 4]
