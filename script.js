@@ -136,6 +136,7 @@ function routePage() {
 function initCommonUI() {
   initDateInputs();
   setupStationAutocomplete();
+  initMobileMenu();
 }
 
 function initDateInputs() {
@@ -143,6 +144,40 @@ function initDateInputs() {
   document.querySelectorAll('input[type="date"]').forEach(i => {
     i.min = today;
   });
+}
+
+function initMobileMenu() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    const toggleMenu = () => {
+      navLinks.classList.toggle('active');
+    };
+
+    menuToggle.addEventListener('click', toggleMenu);
+    menuToggle.addEventListener('touchstart', toggleMenu);
+
+    // Close menu when clicking outside
+    const closeMenu = (e) => {
+      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('active');
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+    document.addEventListener('touchstart', closeMenu);
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+      link.addEventListener('touchstart', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  }
 }
 
 /* 6. AUTOCOMPLETE */
@@ -158,29 +193,37 @@ function bindAutocomplete(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
 
+  const container = document.getElementById(inputId + '-suggestions');
+  if (!container) return;
+
   input.addEventListener('input', () => {
-    const list = document.getElementById(inputId + '-list');
-    if (list) list.remove();
+    container.innerHTML = '';
+    if (input.value.length < 2) {
+      container.style.display = 'none';
+      return;
+    }
 
-    if (input.value.length < 2) return;
-
-    const container = document.createElement('div');
-    container.id = inputId + '-list';
-    container.className = 'autocomplete-list';
+    container.style.display = 'block';
 
     TRAIN_STATIONS.filter(s =>
       s.name.toLowerCase().includes(input.value.toLowerCase())
     ).forEach(s => {
       const item = document.createElement('div');
-      item.textContent = `${s.name} (${s.code})`;
+      item.className = 'suggestion-item';
+      item.innerHTML = `<i class="fas fa-map-marker-alt"></i><span class="suggestion-name">${s.name}</span><span class="suggestion-city">${s.city}</span>`;
       item.onclick = () => {
-        input.value = item.textContent;
-        container.remove();
+        input.value = `${s.name} (${s.code})`;
+        container.style.display = 'none';
       };
       container.appendChild(item);
     });
+  });
 
-    input.parentNode.appendChild(container);
+  // Hide suggestions when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target) && !container.contains(e.target)) {
+      container.style.display = 'none';
+    }
   });
 }
 

@@ -1,6 +1,4 @@
-/* ============================================
-   RESET & BASE STYLES
-   ============================================ */
+/* RESET & BASE STYLES */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -20,9 +18,7 @@ html {
     font-size: 16px;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
+/* TYPOGRAPHY */
 h1, h2, h3, h4 {
     font-weight: 600;
     color: #2c3e50;
@@ -35,9 +31,7 @@ h1, h2, h3, h4 {
   margin-top: 20px;
 }
 
-/* ===============================
-   HISTORY
-=============================== */
+/* HISTORY */
 .history-item {
   background: #fff;
   padding: 14px;
@@ -79,9 +73,7 @@ button {
 }
 
 
-/* ============================================
-   HEADER & NAVIGATION (COMMON)
-   ============================================ */
+/* HEADER & NAVIGATION (COMMON) */
 header {
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -158,9 +150,7 @@ header {
     color: #2c3e50;
 }
 
-/* ===============================
-   AUTOCOMPLETE
-=============================== */
+/* AUTOCOMPLETE */
 .autocomplete-list {
   position: absolute;
   background: #fff;
@@ -184,9 +174,7 @@ header {
 }
 
 
-/* ============================================
-   BUTTONS
-   ============================================ */
+/* BUTTONS */
 .btn-primary {
     background: #3498db;
     color: white;
@@ -269,9 +257,7 @@ header {
     background: #c0392b;
 }
 
-/* ============================================
-   FORMS
-   ============================================ */
+/* FORMS */
 .form-group {
     position: relative;
     margin-bottom: 1rem;
@@ -311,9 +297,7 @@ header {
     margin-bottom: 1rem;
 }
 
-/* ============================================
-   CARDS
-   ============================================ */
+/* CARDS */
 .feature-card,
 .promo-card,
 .stat-card,
@@ -331,9 +315,7 @@ header {
     transform: translateY(-5px);
 }
 
-/* ============================================
-   BADGES
-   ============================================ */
+/* BADGES */
 .type-badge,
 .status-badge,
 .promo-badge,
@@ -366,9 +348,7 @@ header {
     color: #e74c3c;
 }
 
-/* ============================================
-   ICONS
-   ============================================ */
+/* ICONS */
 .feature-icon,
 .login-icon,
 .registration-icon,
@@ -388,9 +368,7 @@ header {
     background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
 }
 
-/* ============================================
-   SECTIONS
-   ============================================ */
+/* SECTIONS */
 .hero {
     display: flex;
     align-items: center;
@@ -427,9 +405,7 @@ header {
     margin: 0 auto;
 }
 
-/* ============================================
-   LANDING PAGE SPECIFIC
-   ============================================ */
+/* LANDING PAGE SPECIFIC */
 .hero-content {
     flex: 1;
     max-width: 600px;
@@ -560,9 +536,7 @@ header {
     margin-bottom: 0.5rem;
 }
 
-/* ============================================
-   LOGIN PAGE SPECIFIC
-   ============================================ */
+/* LOGIN PAGE SPECIFIC */
 .login-page {
     min-height: 100vh;
     display: flex;
@@ -798,9 +772,7 @@ header {
     text-decoration: underline;
 }
 
-/* ============================================
-   HISTORY PAGE SPECIFIC
-   ============================================ */
+/* HISTORY PAGE SPECIFIC */
 .history-page {
     padding: 2rem 5%;
     max-width: 1400px;
@@ -1224,9 +1196,7 @@ header {
     margin-top: 0.3rem;
 }
 
-/* ============================================
-   TRAIN SEARCH PAGE SPECIFIC
-   ============================================ */
+/* TRAIN SEARCH PAGE SPECIFIC */
 .train-search-page {
     padding: 2rem 5%;
     max-width: 1200px;
@@ -1368,9 +1338,7 @@ header {
     transform: translateY(-2px);
 }
 
-/* ============================================
-   PROFILE PAGE SPECIFIC
-   ============================================ */
+/* PROFILE PAGE SPECIFIC */
 .profile-page {
     padding: 2rem 5%;
     max-width: 1400px;
@@ -1551,9 +1519,7 @@ header {
     margin-top: 0.5rem;
 }
 
-/* ============================================
-   COMMON COMPONENTS
-   ============================================ */
+/* COMMON COMPONENTS */
 .suggestions-container {
     position: absolute;
     background: white;
@@ -1601,9 +1567,7 @@ header {
     margin-left: auto;
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* FOOTER */
 footer {
     background-color: #2c3e50;
     color: white;
@@ -1679,20 +1643,19 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+/* RESPONSIVE DESIGN */
 
 /* Mobile (up to 767px) */
 @media (max-width: 767px) {
     html {
         font-size: 14px;
     }
-    
+
     .navbar {
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem;
+        position: relative;
     }
     
     .nav-links {
@@ -1719,10 +1682,23 @@ footer {
     }
     
     .menu-toggle {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         right: 1rem;
         top: 1rem;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: background 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
     }
     
     .logo h1 {
@@ -1935,30 +1911,66 @@ footer {
         padding: 3rem 5%;
         min-height: auto;
     }
-    
+
     .hero-content {
         margin-bottom: 2rem;
     }
-    
+
     .hero-content h2 {
         font-size: 2.5rem;
     }
-    
+
     .hero-image img {
         max-width: 80%;
     }
-    
+
     .navbar {
         padding: 1rem 3%;
+        position: relative;
     }
-    
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
     .nav-links li {
-        margin-left: 1rem;
+        margin: 0.5rem 0;
+        width: 100%;
     }
-    
+
     .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        text-align: left;
         font-size: 0.9rem;
-        padding: 0.4rem 0.6rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        z-index: 1001;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: background 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
     }
     
     .features-container {
