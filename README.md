@@ -1,24 +1,20 @@
 # **TiketKeretaMaksi - Aplikasi Pemesanan Tiket Kereta API**
 
 ## **Deskripsi Proyek**
-Perkembangan teknologi informasi telah membawa perubahan signifikan di berbagai sektor, termasuk transportasi, khususnya dalam sistem pemesanan tiket kereta api yang kini beralih dari metode konvensional ke digital. Pemesanan tiket secara daring memungkinkan pengguna mengakses informasi jadwal, harga, dan ketersediaan tiket secara cepat dan efisien tanpa harus datang ke stasiun.
+Perkembangan teknologi informasi telah membawa perubahan yang cukup besar di berbagai bidang, termasuk transportasi, khususnya dalam sistem pemesanan tiket kereta api yang biasanya dilakukan secara langsung di stasiun, kini beralih ke digital. Pemesanan tiket secara daring memungkinkan pengguna mengakses informasi jadwal, harga, dan ketersediaan tiket secara cepat dan efisien tanpa harus datang ke stasiun.
 
 Dalam bidang pendidikan, teknologi web berperan penting sebagai sarana pembelajaran untuk memahami pengembangan aplikasi berbasis web dan pengelolaan data. Konsep dasar seperti operasi Create, Read, Update, dan Delete (CRUD) menjadi fondasi utama dalam pembangunan sistem informasi, sehingga diperlukan aplikasi sederhana yang dapat merepresentasikan penerapan konsep tersebut.
 
-Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi web pemesanan tiket kereta api berbasis JavaScript yang menggunakan array dan localStorage sebagai media penyimpanan data. Aplikasi ini dirancang untuk mengelola data pemesanan secara lokal, sehingga memudahkan proses penyimpanan, pengambilan, pengubahan, dan penghapusan data.
+Oleh karena itu, kami mengembangkan aplikasi TiketKeretaMaksi, yaitu aplikasi web pemesanan tiket kereta api secara online, berbasis JavaScript yang menggunakan array dan localStorage sebagai media penyimpanan data. Aplikasi ini dirancang untuk mengelola data pemesanan secara lokal, sehingga memudahkan proses penyimpanan, pengambilan, pengubahan, dan penghapusan data.
 
-Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem pemesanan tiket berbasis web serta meningkatkan keterampilan dalam menerapkan operasi CRUD dan pengelolaan data menggunakan JavaScript sebagai penghubung antara teori dan praktik pemrograman.
-
-## ✨ **Fitur Utama**
+## **Fitur Utama**
 
 ### **Fitur Beranda**
-- Menjadi halaman utama aplikasi TiketKeretaMaksi
 - Menampilkan informasi umum mengenai layanan pemesanan tiket kereta api secara online
 - Memberikan panduan singkat alur pemesanan tiket kepada pengguna
 - Menyediakan informasi promo, diskon, dan penawaran khusus yang sedang berlangsung
-- Menampilkan pengumuman atau informasi terbaru terkait layanan kereta api
 
-### 🎟️ **Pemesanan Tiket Kereta**
+### **Pemesanan Tiket Kereta**
 - Pencarian rute berdasarkan stasiun asal & tujuan
 - Tanggal keberangkatan dan tanggal pulang (untuk perjalanan pulang pergi)
 - Pilihan jumlah penumpang (dewasa & anak)
@@ -26,16 +22,15 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Menyediakan tombol pencarian tiket kereta
 - Menampilkan hasil pencarian berupa daftar tiket yang tersedia
 
-### 📊 **Fitur Riwayat Pemesanan**
+### **Fitur Riwayat Pemesanan**
 - Menampilkan seluruh data pemesanan tiket yang telah dilakukan pengguna.
-- **CRUD Operations** lengkap (Create, Read, Update, Delete)
-- Penyimpanan data di **localStorage browser**
 - Mengelompokkan tiket berdasarkan status (Semua, Akan Datang, Selesai, Dibatalkan)
 - Menyediakan fitur berdasarkan periode waktu tertentu dan pengurutan data tiket berdasarkan (terbaru, terlama, harga tertinggi, harga terendah)
 - Pencarian data dengan autocomplete
 - Statistik otomatis dari data riwayat
+- Penyimpanan data di **localStorage browser**
 
-### 👤 **Profil**
+### **Profil**
 - Digunakan untuk melihat dan mengelola data pribadi pengguna.
 - Edit informasi profil pengguna yang terdiri dari nama, email, nomor telepon, tanggal lahir dan alamat
 - Sistem membership dengan poin
@@ -47,7 +42,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - Menyediakan fitur lupa kata sandi
 - Menyediakan opsi login menggunakan akun Google dan Facebook
 
-## 🛠️ **Teknologi yang Digunakan**
+## **Teknologi yang Digunakan**
 
 ### **Frontend**
 - **HTML5** - Struktur halaman web
@@ -61,7 +56,7 @@ Melalui aplikasi ini, diharapkan mahasiswa dapat memahami alur kerja sistem peme
 - **JavaScript Array Methods** - Manipulasi data (map, filter, reduce, forEach)
 - **JSON** - Format data serialization
 
-## 📁 **Struktur File Proyek**
+## **Struktur File Proyek**
 
 ```
 tiketkeretamaksi/
@@ -80,7 +75,7 @@ tiketkeretamaksi/
 └── README.md           # Dokumentasi proyek
 ```
 
-## 🗃️ **Struktur Data**
+## **Struktur Data**
 
 ### **Data History (Array of Objects)**
 ```javascript
@@ -120,50 +115,7 @@ tiketkeretamaksi/
 }
 ```
 
-## 🔧 **API Data Storage**
-
-### **Kelas DataStorage**
-```javascript
-// Inisialisasi
-DataStorage.getHistory()        // Ambil semua data history
-DataStorage.getProfile()        // Ambil data profil
-DataStorage.getStatistics()     // Ambil statistik
-
-// CRUD Operations
-DataStorage.addHistoryItem(item)     // Tambah data baru
-DataStorage.updateHistoryStatus(id, status)  // Update status
-DataStorage.deleteHistoryItem(id)    // Hapus data
-DataStorage.filterHistory(type)      // Filter data
-
-// Utility
-DataStorage.addSampleData()     // Tambah data contoh
-DataStorage.clearAllData()      // Reset semua data
-DataStorage.exportData()        // Export data ke JSON
-```
-
-### **Contoh Penggunaan**
-```javascript
-// Tambah data pemesanan baru
-const newBooking = {
-    type: 'train',
-    status: 'upcoming',
-    trainName: 'Argo Bromo',
-    from: 'Gambir',
-    to: 'Surabaya',
-    price: 450000
-};
-DataStorage.addHistoryItem(newBooking);
-
-// Filter data berdasarkan status
-const upcomingBookings = DataStorage.filterHistory('upcoming');
-
-// Ambil statistik
-const stats = DataStorage.getStatistics();
-console.log(`Total tiket: ${stats.trainCount}`);
-console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
-```
-
-## 🎨 **Fitur UI/UX**
+## **Fitur UI/UX**
 
 ### **Design System**
 - **Warna Primer**: `#3498db` (Biru), `#2c3e50` (Dark Blue)
@@ -179,35 +131,19 @@ console.log(`Total pengeluaran: Rp ${stats.totalSpent}`);
 - **Tabs** untuk navigasi
 - **Modals** untuk detail informasi
 
-## 📱 **Responsive Design**
+## **Responsive Design**
 - **Desktop** (>1024px) - Grid layout dengan sidebar
 - **Tablet** (768px-1024px) - Adaptive layout
 - **Mobile** (<768px) - Stacked layout dengan menu hamburger
 
-## 🔍 **Fitur Debug & Testing**
+## **Fitur Testing CRUD Operations**
 
-### **Fungsi Console**
-```javascript
-// Tampilkan semua data
-showStorageData()
-
-// Tambah data contoh
-addSampleHistoryData()
-
-// Reset semua data
-clearAllData()
-
-// Export data ke JSON
-exportData()
-```
-
-### **Testing CRUD Operations**
 1. **Create**: Pilih kereta → Klik "PILIH"
 2. **Read**: Lihat di halaman History
 3. **Update**: Klik "Batalkan" untuk mengubah status
 4. **Delete**: Fungsi delete tersedia di backend logic
 
-## 📊 **Alur Kerja Aplikasi**
+## **Alur Kerja Aplikasi**
 
 ```
 1. Landing Page → Pilih stasiun & tanggal
@@ -393,20 +329,19 @@ class DataStorage {
 Proyek ini dikembangkan oleh kelompok 4 orang:
 
 **Anggota 1:**
-- **Nama**: [Nama Anggota 1]
-- **NIM**: [NIM Anggota 1]
+- **Nama**: Khoiril Chandra Kurniawan
+- **NPM**: (4524210049)
 
 **Anggota 2:**
-- **Nama**: [Khoiril Chandra K]
-- **NIM**: [4524210049]
+- **Nama**: Ririn Verdawati
+- **NPM**: (4524210090)
 
 **Anggota 3:**
-- **Nama**: [Nama Anggota 3]
-- **NIM**: [NIM Anggota 3]
+- **Nama**: Steven Marvellius Agusto Simatupang
+- **NPM**: (4524210098)
 
 **Anggota 4:**
-- **Nama**: [Nama Anggota 4]
-- **NIM**: [NIM Anggota 4]
+- **Nama**: Maria Natalia Alyssa Beli
+- **NPM**: (4524210133)
 
-**Mata Kuliah**: Pemrograman Web
-**Institusi**: [Universitas Pancasila]
+**Mata Kuliah**: PRAKTIKUM DESAIN WEB A - UNIVERSITAS PANCASILA
