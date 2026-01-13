@@ -226,6 +226,169 @@ exportData()
 - DOM manipulation
 - Object-oriented programming
 
+## 📋 **Latar Belakang Pengembangan Aplikasi**
+
+Aplikasi TiketKeretaMaksi dikembangkan sebagai bagian dari tugas praktikum mata kuliah Desain Web dalam rangka memahami konsep-konsep fundamental pengembangan aplikasi web berbasis JavaScript. Pengembangan aplikasi ini didasarkan pada kebutuhan untuk menciptakan platform pemesanan tiket kereta api yang sederhana namun fungsional, dengan fokus pada implementasi operasi CRUD (Create, Read, Update, Delete) menggunakan localStorage sebagai media penyimpanan data.
+
+### **Tujuan Pengembangan**
+- Memahami dan mengimplementasikan konsep dasar operasi CRUD dalam konteks aplikasi web
+- Menerapkan penggunaan localStorage untuk penyimpanan data persist di sisi klien
+- Mengembangkan kemampuan dalam manipulasi DOM dan event handling menggunakan JavaScript
+- Menciptakan antarmuka pengguna yang responsif dan user-friendly
+- Menerapkan prinsip-prinsip desain web modern dengan HTML5, CSS3, dan JavaScript ES6+
+
+### **Ruang Lingkup Pengembangan**
+Aplikasi ini dikembangkan dengan batasan-batasan tertentu untuk memfokuskan pembelajaran pada aspek teknis utama:
+- Penggunaan localStorage sebagai pengganti database server-side
+- Implementasi fitur pemesanan tiket secara simulasi
+- Fokus pada fungsionalitas CRUD untuk manajemen data pemesanan
+- Desain responsif untuk berbagai ukuran perangkat
+
+## 🎨 **Wireframe Aplikasi**
+
+Berikut adalah wireframe desain antarmuka aplikasi TiketKeretaMaksi yang menunjukkan struktur dan navigasi utama:
+
+![Wireframe Aplikasi](Screenshot%202026-01-13%20114852.png)
+
+*Wireframe menampilkan halaman-halaman utama: Landing Page, Pencarian Tiket, Riwayat Pemesanan, dan Profil Pengguna*
+
+## 🔧 **Penjelasan Fitur-Fitur Aplikasi**
+
+### **1. Halaman Beranda (Landing Page)**
+
+**Deskripsi**: Halaman utama aplikasi yang menyambut pengguna dan menyediakan akses ke fitur pencarian tiket.
+
+**Tangkapan Layar Kode**:
+```html
+<section class="hero">
+    <div class="hero-content">
+        <h2>Pesan Tiket Kereta</h2>
+        <p>Perjalanan nyaman dan hemat dengan kemudahan pemesanan online</p>
+        <a href="train-search.html" class="btn-hero btn-train">
+            <i class="fas fa-train"></i> Pesan Tiket Kereta
+        </a>
+    </div>
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Kereta Api">
+    </div>
+</section>
+```
+
+### **2. Pencarian Tiket Kereta**
+
+**Deskripsi**: Formulir pencarian tiket dengan autocomplete untuk stasiun asal dan tujuan.
+
+**Tangkapan Layar Kode**:
+```javascript
+function setupStationAutocomplete() {
+  bindAutocomplete('from-station');
+  bindAutocomplete('to-station');
+  bindAutocomplete('from-station-detail');
+  bindAutocomplete('to-station-detail');
+}
+
+function bindAutocomplete(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+
+  input.addEventListener('input', () => {
+    const list = document.getElementById(inputId + '-list');
+    if (list) list.remove();
+
+    if (input.value.length < 2) return;
+
+    const container = document.createElement('div');
+    container.id = inputId + '-list';
+    container.className = 'autocomplete-list';
+
+    TRAIN_STATIONS.filter(s =>
+      s.name.toLowerCase().includes(input.value.toLowerCase())
+    ).forEach(s => {
+      const item = document.createElement('div');
+      item.textContent = `${s.name} (${s.code})`;
+      item.onclick = () => {
+        input.value = item.textContent;
+        container.remove();
+      };
+      container.appendChild(item);
+    });
+
+    input.parentNode.appendChild(container);
+  });
+}
+```
+
+### **3. Sistem Riwayat Pemesanan (CRUD Operations)**
+
+**Deskripsi**: Implementasi lengkap operasi CRUD untuk mengelola data pemesanan tiket.
+
+**Tangkapan Layar Kode**:
+```javascript
+class DataStorage {
+  static getHistory() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEYS.HISTORY)) || [];
+  }
+
+  static saveHistory(data) {
+    localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(data));
+  }
+
+  static addHistoryItem(item) {
+    const history = this.getHistory();
+    history.unshift({ id: Date.now(), ...item });
+    this.saveHistory(history);
+  }
+
+  static updateHistoryStatus(id, status) {
+    const history = this.getHistory().map(item =>
+      item.id == id ? { ...item, status } : item
+    );
+    this.saveHistory(history);
+  }
+}
+```
+
+### **4. Halaman Profil Pengguna**
+
+**Deskripsi**: Manajemen data profil pengguna dengan sistem membership.
+
+**Tangkapan Layar Kode**:
+```html
+<div class="membership-card">
+    <h2><i class="fas fa-crown"></i> Membership</h2>
+    <div class="membership-info">
+        <div>
+            <div class="points-label">Total Poin</div>
+            <div class="points-value" id="membership-points">1250</div>
+            <div class="points-note">Poin dapat ditukar dengan diskon</div>
+        </div>
+        <div>
+            <div class="status-label">Status Member</div>
+            <div class="status-value" id="membership-status">Gold</div>
+            <div class="benefit-badge">15% Cashback</div>
+        </div>
+    </div>
+</div>
+```
+
+## 📸 **Tangkapan Layar Hasil Website**
+
+### **Halaman Beranda**
+![Halaman Beranda](Screenshot%202026-01-13%20114852.png)
+*Halaman utama dengan hero section dan fitur pencarian tiket*
+
+### **Halaman Pencarian Tiket**
+![Halaman Pencarian](Screenshot%202026-01-13%20114852.png)
+*Formulir pencarian dengan autocomplete dan hasil pencarian tiket*
+
+### **Halaman Riwayat Pemesanan**
+![Halaman Riwayat](Screenshot%202026-01-13%20114852.png)
+*Daftar riwayat pemesanan dengan filter dan statistik*
+
+### **Halaman Profil**
+![Halaman Profil](Screenshot%202026-01-13%20114852.png)
+*Manajemen profil pengguna dan informasi membership*
+
 ## 👨‍💻 **Pengembang**
 Proyek ini dikembangkan oleh kelompok 4 orang:
 
